@@ -30,19 +30,18 @@ def bulims_keyboard(brend:str):
     for bulim in api:
         keyboard.append(
             [
-                InlineKeyboardButton(text=bulim['modda'],callback_data=f"bolim:{brend}:{bulim.doc_id}:{'moddalar'}")
+                InlineKeyboardButton(text=bulim['modda'],callback_data=f"bolim:{brend}:{bulim.doc_id}")
             ]
         )
     return InlineKeyboardMarkup(keyboard)
 def modda_keyboard(bolim:str, doc_id):
-    print(bolim, doc_id)
     api = get_modda(bolim, doc_id=doc_id)
-    print(type(api))
+
     keyboard = []
     for item in api:
         keyboard.append(
             [
-                InlineKeyboardButton(text=item,callback_data=f"moddalar")
+                InlineKeyboardButton(text=item,callback_data=f"moddalar:{bolim}:{doc_id}:{item}")
             ]
         )
     return InlineKeyboardMarkup(keyboard)

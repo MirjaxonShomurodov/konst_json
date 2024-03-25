@@ -4,9 +4,9 @@ import handlers
 def main():
     try:
         Token = get_token()
-    except ValueError():
-        print('400')
-        return 'Token not found'
+    except ValueError as e:
+        print(f"Error: {e}")
+        return 
     
     updater = Updater(Token)
     
@@ -16,9 +16,9 @@ def main():
     dp.add_handler(MessageHandler(Filters.text("Konstitutsiya 📖"), handlers.bulim))
 
     dp.add_handler(CallbackQueryHandler(handlers.bob, pattern="modda:"))
-    dp.add_handler(CallbackQueryHandler(handlers.moddas, pattern=''))
-    dp.add_handler(CallbackQueryHandler(handlers.one_modda, pattern=''))
-
+    dp.add_handler(CallbackQueryHandler(handlers.one_modda, pattern='moddalar:'))
+    dp.add_handler(CallbackQueryHandler(handlers.moddas, pattern='bolim:'))
+    
     updater.start_polling()
     updater.idle()
 
